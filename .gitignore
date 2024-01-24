@@ -1,3 +1,6 @@
+# Bitburner Settings Ignore
+settings.json
+
 # Logs
 logs
 *.log
