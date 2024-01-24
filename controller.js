@@ -28,6 +28,8 @@ export async function main(ns) {
 	 * Find Host Servers
 	 */
 	let hosts = await lib.filterHosts(ns, allServers);
+	//ns.tprint("hosts: " + hosts);
+
 
 	/**
 	 * Find Target servers
@@ -36,18 +38,24 @@ export async function main(ns) {
 	if (ns.getHackingLevel() < 20) {
 		targets = await lib.filterTargets(ns, allServers, true, 'n00dles');
 	}
-	else if (ns.getHackingLevel() < 200) {
+	else if (ns.getHackingLevel() < 150) {
 		targets = await lib.filterTargets(ns, allServers, true, 'joesguns');
 	}
-	else {
-		targets = await lib.filterTargets(ns, allServer);
+	else if (ns.getHackingLevel() < 500) {
+		targets = await lib.filterTargets(ns, allServers, false, '', 20, 20);
 	}
-	//ns.tprint(targets);
+	else {
+		targets = await lib.filterTargets(ns, allServers);
+	}
+	//ns.tprint("targets: " + targets);
 
 	/**
 	 * Hacks
 	 */
 	await lib.executeBasicHacks(ns, hosts, targets);
 
-
+	/**
+	 * Buy Exploits
+	 */
+	await lib.buyExploits(ns);
 }

@@ -53,13 +53,13 @@ export async function filterHosts(ns, servers) {
 	return hosts;
 }
 
-export async function filterTargets(ns, servers, singleTarget = false, thisTarget = '') {
+export async function filterTargets(ns, servers, singleTarget = false, thisTarget = '', max = ns.getHackingLevel(), min = 1) {
 	/**
-	 * Change these values to set a variable hack level or target
+	 * Pass these values to set a variable hack level or target
 	 * particular servers
 	 */
-	const minHackLevel = 1;
-	const maxHackLevel = ns.getHackingLevel();
+	const maxHackLevel = max;
+	const minHackLevel = min;
 	
 	//let singleTarget = true;
 	//let thisTarget = "joesguns";
@@ -84,8 +84,11 @@ export async function filterTargets(ns, servers, singleTarget = false, thisTarge
 export async function executeBasicHacks(ns, hosts, targets) {
 	let i = 0;
 	for (const host of hosts) {
-		//ns.print(host);
+		//ns.tprint(host);
+		await ns.sleep(3000);
+
 		const availableRam = ns.getServerMaxRam(host) - ns.getServerUsedRam(host);
+		//ns.tprint(availableRam);
 
 		var moneyThresh = ns.getServerMaxMoney(targets[i]) * 0.75;
 		var securityThresh = ns.getServerMinSecurityLevel(targets[i]) + 5;
@@ -93,18 +96,21 @@ export async function executeBasicHacks(ns, hosts, targets) {
 		if (ns.getServerSecurityLevel(targets[i]) > securityThresh) {
 				//weaken(targets[i]);
 				const threads = Math.floor(availableRam / ns.getScriptRam('weaken.js'));
+				//ns.tprint(threads);
 				if (threads != 0) {
 					ns.exec('weaken.js', host, threads, targets[i]);
 				}
 		} else if (ns.getServerMoneyAvailable(targets[i]) < moneyThresh) {
 				//grow(targets[i]);
 				const threads = Math.floor(availableRam / ns.getScriptRam('grow.js'));
+				//ns.tprint(threads);
 				if (threads != 0) {
 					ns.exec('grow.js', host, threads, targets[i]);
 				}
 		} else {
 				//hack(targets[i]);
 				const threads = Math.floor(availableRam / ns.getScriptRam('hack.js'));
+				//ns.tprint(threads);
 				if (threads != 0) {
 					ns.exec('hack.js', host, threads, targets[i]);
 				}
@@ -115,4 +121,39 @@ export async function executeBasicHacks(ns, hosts, targets) {
 			i = 0;
 		}
 	}	
+}
+
+export async function buyExploits(ns) {
+	const funds = ns.getServerMoneyAvailable('home');
+
+	if (funds > 500000 && !ns.fileExists('BruteSSH.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase BruteSSH.exe");
+	}
+	if (funds > 1500000 && !ns.fileExists('FTPCrack.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase FTPCrack.exe");
+	}
+	if (funds > 5000000 && !ns.fileExists('relaySMTP.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase relaySMTP.exe");
+	}
+	if (funds > 30000000 && !ns.fileExists('HTTPWorm.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase HTTPWorm.exe");
+	}
+	if (funds > 250000000 && !ns.fileExists('SQLInject.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase SQLInject.exe");
+	}
+	if (funds > 500000 && !ns.fileExists('ServerProfiler.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase ServerProfiler.exe");
+	}
+	if (funds > 500000 && !ns.fileExists('DeepscanV1.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase DeepscanV1.exe");
+	}
+	if (funds > 25000000 && !ns.fileExists('DeepscanV2.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase DeepscanV2.exe");
+	}
+	if (funds > 1000000 && !ns.fileExists('AutoLink.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase AutoLink.exe");
+	}
+	if (funds > 5000000000 && !ns.fileExists('Formulas.exe', 'home')) {
+		ns.tprint("UPDATE: Can purchase Formulas.exe");
+	}
 }

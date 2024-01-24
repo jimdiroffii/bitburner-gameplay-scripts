@@ -254,4 +254,37 @@ export async function main(ns) {
 
 ## Darkweb
 
-Accessing the darkweb server is necessary to speed up the process of getting additional exploits. Purchasing the darkweb router is the first manual task in the game, outside of running the first script.
+Accessing the darkweb server is necessary to speed up the process of getting additional exploits. Purchasing the darkweb router is the first manual task in the game, outside of running the first script. Buying the darkweb server can be automated later in the game. For now, I'll purchase `BruteSSH.exe` manually.
+
+## Factions
+
+Factions is another aspect that can't be automated at the early game. To join up with `CyberSec` and start earning some faction rep, we need to go find them. Using `scan-analyze 3` should populate the CSEC server. `BruteSSH` is required to have been bought first. By the time I find `CSEC`, the automated controller should have already found and nuked the server. After connecting to `CSEC`, running `backdoor`, and joining the faction, we can start carrying out hacking contracts with them.
+
+`Sector-12`, if you remain in the home city, should contact soon as well.
+
+Pay attention to the faction rep, as the amounts are quite low at the beginning of the game for augmentation installation.
+
+## Variable Targeting
+
+After level 150, we should have some money, exploits, and many nuked servers running scripts. It is time to split up the workload. Filtering based on hacking level has been added. It requires the modification of the script variables to modify the range of servers being targeted. Once the level is high enough, we can target all servers.
+
+```javascript
+let targets = [];
+ if (ns.getHackingLevel() < 20) {
+  targets = await lib.filterTargets(ns, allServers, true, 'n00dles');
+ }
+ else if (ns.getHackingLevel() < 150) {
+  targets = await lib.filterTargets(ns, allServers, true, 'joesguns');
+ }
+ else if (ns.getHackingLevel() < 500) {
+  targets = await lib.filterTargets(ns, allServers, false, '', 40, 20);
+ }
+ else {
+  targets = await lib.filterTargets(ns, allServers);
+ }
+ ns.tprint("targets: " + targets);
+```
+
+## Moving Forward
+
+Some augments can be obtained and work towards the first reset can be accomplished. The hacking algorithm needs some work to improve efficiency. The threads are all being allocated at the same time, manually split with `sleep`, which is making money progression slower than necessary. Improving initial money generation and purchasing servers is the next step.
