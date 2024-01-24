@@ -15,7 +15,7 @@ export async function main(ns) {
 	 * the scripts.
 	 */
 	while (true) {
-		
+		//ns.tprint("Running `controller.js`: " + ns.getScriptRam("controller.js"));
 		await ns.exec('controller.js', 'home', 1);
 
 		/**

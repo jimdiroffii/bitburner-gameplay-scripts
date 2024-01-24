@@ -5,6 +5,7 @@
  * 
  * Logic Controller
  **/
+import * as lib from "lib.js";
 export async function main(ns) {
 	/**
 	 * The objective is to control the logic for all game 
@@ -12,21 +13,41 @@ export async function main(ns) {
 	 * on the schedule set by 00-mainLoop.js. 
 	 */
 
-	let allServers = await scanNetwork(ns);
-	for (let server of allServers) {
-		ns.tprint(server);
-	}
+	/**
+	 * Get all available servers
+	 */
+	let allServers = await lib.scanNetwork(ns);
+	//ns.tprint(allServers);
 
-}
+	/**
+	 * Nuke servers (and copy hacks)
+	 */
+	await lib.nukeServers(ns, allServers);
 
-async function scanNetwork(ns, startServer = 'home', foundServers = []) {
-	let servers = ns.scan(startServer);
-	for (let server of servers) {
-			if (!foundServers.includes(server)) {
-					foundServers.push(server);
-					// Use await and pass the same foundServers array
-					await scanNetwork(ns, server, foundServers); 
-			}
+	/**
+	 * Find Host Servers
+	 */
+	let hosts = await lib.filterHosts(ns, allServers);
+
+	/**
+	 * Find Target servers
+	 */
+	let targets = [];
+	if (ns.getHackingLevel() < 20) {
+		targets = await lib.filterTargets(ns, allServers, true, 'n00dles');
 	}
-	return foundServers;
+	else if (ns.getHackingLevel() < 200) {
+		targets = await lib.filterTargets(ns, allServers, true, 'joesguns');
+	}
+	else {
+		targets = await lib.filterTargets(ns, allServer);
+	}
+	//ns.tprint(targets);
+
+	/**
+	 * Hacks
+	 */
+	await lib.executeBasicHacks(ns, hosts, targets);
+
+
 }
