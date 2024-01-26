@@ -16,7 +16,9 @@ export async function main(ns) {
 	 */
 	while (true) {
 		//ns.tprint("Running `controller.js`: " + ns.getScriptRam("controller.js"));
-		await ns.exec('controller.js', 'home', 1);
+		if (!ns.isRunning('controller.js', 'home')) {
+			await ns.exec('controller.js', 'home', 1);
+		}		
 
 		/**
 		 * Functions that take time must be used with `await`
@@ -26,6 +28,6 @@ export async function main(ns) {
 		 * of timing to launch the main program. This can't be
 		 * edited without restarting this script.
 		 */
-		await ns.sleep(10000);
+		await ns.sleep(2000);
 	}
 }

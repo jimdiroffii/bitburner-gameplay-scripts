@@ -38,10 +38,13 @@ export async function nukeServers(ns, servers) {
 	}
 }
 
-export async function filterHosts(ns, servers) {
+export async function filterHosts(ns, servers, excludeHome) {
 	let hosts = [];
 
 	for (const server of servers) {
+		if (server === 'home' && excludeHome) {
+			continue;
+		}
 		if (
 			ns.hasRootAccess(server) &&
 			ns.getServerMaxRam(server) > 0 
@@ -122,6 +125,49 @@ export async function executeBasicHacks(ns, hosts, targets) {
 		}
 	}	
 }
+
+export async function executeProtoHacks(ns, hosts, targets) {
+	let i = 0;
+	for (const host of hosts) {
+		//ns.tprint(host);
+		await ns.sleep(3000);
+
+		const availableRam = ns.getServerMaxRam(host) - ns.getServerUsedRam(host);
+		//ns.tprint(availableRam);
+
+		var moneyThresh = ns.getServerMaxMoney(targets[i]) * 0.75;
+		var securityThresh = ns.getServerMinSecurityLevel(targets[i]) + 5;
+
+		if (ns.getServerSecurityLevel(targets[i]) > securityThresh) {
+				//weaken(targets[i]);
+				const threads = Math.floor(availableRam / ns.getScriptRam('weaken.js'));
+				//ns.tprint(threads);
+				if (threads != 0) {
+					ns.exec('weaken.js', host, threads, targets[i]);
+				}
+		} else if (ns.getServerMoneyAvailable(targets[i]) < moneyThresh) {
+				//grow(targets[i]);
+				const threads = Math.floor(availableRam / ns.getScriptRam('grow.js'));
+				//ns.tprint(threads);
+				if (threads != 0) {
+					ns.exec('grow.js', host, threads, targets[i]);
+				}
+		} else {
+				//hack(targets[i]);
+				const threads = Math.floor(availableRam / ns.getScriptRam('hack.js'));
+				//ns.tprint(threads);
+				if (threads != 0) {
+					ns.exec('hack.js', host, threads, targets[i]);
+				}
+		}
+		
+		i = i + 1;
+		if (i >= targets.length) {
+			i = 0;
+		}
+	}	
+}
+
 
 export async function buyExploits(ns) {
 	const funds = ns.getServerMoneyAvailable('home');

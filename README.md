@@ -288,3 +288,15 @@ let targets = [];
 ## Moving Forward
 
 Some augments can be obtained and work towards the first reset can be accomplished. The hacking algorithm needs some work to improve efficiency. The threads are all being allocated at the same time, manually split with `sleep`, which is making money progression slower than necessary. Improving initial money generation and purchasing servers is the next step.
+
+## Upgrading
+
+Upgrading the home server RAM is next priority, so more and better scripts can be run. The first upgrade is only $1M, and likely could have been done before resetting for augmentations (whoops).
+
+Once the upgrade has been completed. The next phase of the operation begins. Efficient hacking through "proto-batchers."
+
+## Proto-Batching
+
+The BitBurner docs refer to a proto-batcher algorithm as a manager that separates the scripts and performs all deployments from a master script based on threads and need. Much of what has already been accomplished has worked towards this goal. The part that needs the most refinements is the calculation of necessary threads to perform any given action on a target. If available threads are also updated to the console regularly, it would be easy to monitor the effectiveness of the hacks.
+
+The goals are going to become more complex. Now I want to reduce the hack algorithm to a single target, and update the console with a status dashboard.
