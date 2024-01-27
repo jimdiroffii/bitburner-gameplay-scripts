@@ -8,19 +8,38 @@
 import * as lib from "lib.js";
 
 export async function main(ns) {
+	/****************************************************************************
+	 * CONSTANTS FOR GAMEPLAY ADJUSTMENTS
+	 ***************************************************************************/
+
 	/**
 	 * Set isSingleTarget to true or false based on need
 	 * If false, the min and max values are used
 	 */
-	//const isSingleTarget = false;
-	const isSingleTarget = true;
+	const isSingleTarget = false;
+	//const isSingleTarget = true;
+
 	//const singleTarget = 'n00dles';
 	const singleTarget = 'joesguns';
 
-	const minHackLevel = 1;
-	//const minHackLevel = 10;
-	const maxHackLevel = 99;
+	/**
+	 * Set min and max hack level for range-based (non-single target) targeting
+	 */
+	//const minHackLevel = 1;
+	const minHackLevel = 10;
+
+	const maxHackLevel = 40;
 	//const maxHackLevel = ns.getHackingLevel();
+
+	/** 
+	 * Purchased Server RAM Limit, useful for early game to limit purchases
+	 */
+	const maxPurchasedServerRam = 16; // Maximum RAM size in GB - Max Value: 1048576
+
+
+	/****************************************************************************
+	 * FUNCTIONS
+	 ***************************************************************************/
 
 	/** 
 	 * Choose whether or not to exclude the `home` server
@@ -76,18 +95,6 @@ export async function main(ns) {
 	else {
 		targets = await lib.filterTargets(ns, allServers, undefined, undefined, maxHackLevel, minHackLevel);
 	}
-	// if (ns.getHackingLevel() < 20) {
-	// 	targets = await lib.filterTargets(ns, allServers, true, 'n00dles');
-	// }
-	// else if (ns.getHackingLevel() < 150) {
-	// 	targets = await lib.filterTargets(ns, allServers, true, 'joesguns');
-	// }
-	// else if (ns.getHackingLevel() < 500) {
-	// 	targets = await lib.filterTargets(ns, allServers, false, '', 20, 20);
-	// }
-	// else {
-	// 	targets = await lib.filterTargets(ns, allServers);
-	// }
 	//ns.tprint("targets: " + targets);
 
 	/**
@@ -101,4 +108,9 @@ export async function main(ns) {
 	 * Buy Exploits
 	 */
 	await lib.buyExploits(ns);
+
+	/**
+	 * Purchase Servers
+	 */
+	await lib.purchaseServers(ns, maxPurchasedServerRam);
 }

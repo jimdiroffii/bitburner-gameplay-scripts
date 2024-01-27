@@ -334,4 +334,8 @@ However, the first iteration is working well enough as a proof of concept. All t
 
 Another way around this problem might be to expand the target list. To do this correctly would factor in the total threads needed for a target, then moving to the next target. This would continue until we are out of threads or exhausted all targets. If the amount of targets was kept high enough, the entire thread count would be exhausted, which would over over hacking the targets, while leaving the last target underhacked.
 
-Leaving the controller running overnight hacking `joesguns` turned into `$185k` per second. Not bad.
+Leaving the controller running overnight hacking `joesguns` turned into `$185k` per second. Not bad. This at least proves the current algorithm is usable.
+
+## Purchasing New Servers
+
+The batching script is working well enough, quickly getting to $200k per second after a reset. This is without any further server purchases. Purchased servers will truly put the batch scripts to the test, and help define the further refinements necessary. I purchase servers starting at 8 GB, and double their size per iteration. This can be quite wasteful of resources, as I think it takes a couple billion to buy all 25 purchased servers and upgrade them from 8 GB to 1024 GB. Still, this method gets the job done.

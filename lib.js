@@ -340,7 +340,6 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 	}
 }
 
-
 export async function buyExploits(ns) {
 	const funds = ns.getServerMoneyAvailable('home');
 
@@ -374,4 +373,44 @@ export async function buyExploits(ns) {
 	if (funds > 5000000000 && !ns.fileExists('Formulas.exe', 'home')) {
 		//ns.tprint("UPDATE: Can purchase Formulas.exe");
 	}
+}
+
+export async function purchaseServers(ns, maxRam = ns.getPurchasedServerMaxRam()) {
+	const funds = ns.getServerMoneyAvailable('home');
+	const purchasedServers = ns.getPurchasedServers();
+
+	const maxServers = ns.getPurchasedServerLimit();
+	//const maxRam = 1024; // Maximum RAM size in GB (1 TB)
+	const baseName = "slam-";
+	const baseRam = 8; // Starting RAM size in GB
+
+	for (let i = 0; i < maxServers; i++) {
+			let hostname = `${baseName}${i.toString().padStart(3, '0')}`;
+			let serverExists = ns.serverExists(hostname);
+			let currentRam = serverExists ? ns.getServerMaxRam(hostname) : 0;
+
+			if (currentRam >= maxRam) {
+					continue; // Skip if this server is already at max RAM
+			}
+
+			let nextRam = serverExists ? Math.min(currentRam * 2, maxRam) : baseRam;
+			let serverCost = ns.getPurchasedServerCost(nextRam);
+
+			if (ns.getServerMoneyAvailable('home') < serverCost * 2) {
+					continue; // Ensure enough funds are available
+			}
+
+			if (serverExists && ns.ps(hostname).length > 0) {
+					continue; // Wait if the server is running scripts
+			}
+
+			// Delete the old server if it exists and purchase or upgrade the server
+			if (serverExists) {
+					ns.killall(hostname);
+					ns.deleteServer(hostname);
+			}
+			ns.purchaseServer(hostname, nextRam);
+			break; // Exit loop after purchasing or upgrading one server
+	}
+
 }
