@@ -375,42 +375,60 @@ export async function buyExploits(ns) {
 	}
 }
 
-export async function purchaseServers(ns, maxRam = ns.getPurchasedServerMaxRam()) {
-	const funds = ns.getServerMoneyAvailable('home');
-	const purchasedServers = ns.getPurchasedServers();
-
+export async function purchaseServers(ns, maxRam = ns.getPurchasedServerMaxRam(), baseRam = 8) {
 	const maxServers = ns.getPurchasedServerLimit();
-	//const maxRam = 1024; // Maximum RAM size in GB (1 TB)
+	//const maxRam = 8192; // Maximum RAM size in GB
 	const baseName = "slam-";
-	const baseRam = 8; // Starting RAM size in GB
+	//const baseRam = 8; // Starting RAM size in GB
+	const purchasedServers = ns.getPurchasedServers();
+	const costFactor = 4 // Determine how much money to leave in the bank, factor of server cost
 
-	for (let i = 0; i < maxServers; i++) {
-			let hostname = `${baseName}${i.toString().padStart(3, '0')}`;
-			let serverExists = ns.serverExists(hostname);
-			let currentRam = serverExists ? ns.getServerMaxRam(hostname) : 0;
+	let upgradeReady = false;
 
-			if (currentRam >= maxRam) {
-					continue; // Skip if this server is already at max RAM
-			}
-
-			let nextRam = serverExists ? Math.min(currentRam * 2, maxRam) : baseRam;
-			let serverCost = ns.getPurchasedServerCost(nextRam);
-
-			if (ns.getServerMoneyAvailable('home') < serverCost * 2) {
-					continue; // Ensure enough funds are available
-			}
-
-			if (serverExists && ns.ps(hostname).length > 0) {
-					continue; // Wait if the server is running scripts
-			}
-
-			// Delete the old server if it exists and purchase or upgrade the server
-			if (serverExists) {
-					ns.killall(hostname);
-					ns.deleteServer(hostname);
-			}
-			ns.purchaseServer(hostname, nextRam);
-			break; // Exit loop after purchasing or upgrading one server
+	if (purchasedServers.length >= maxServers) {
+		upgradeReady = true;
 	}
 
+	if (!upgradeReady) {
+		for (let i = 0; i < maxServers; i++) {
+			let hostname = `${baseName}${i.toString().padStart(3, '0')}`;
+			if(ns.serverExists(hostname)) {
+				continue;
+			}
+
+			let serverCost = ns.getPurchasedServerCost(baseRam);
+			
+			// Ensure enough funds are available
+			if (ns.getServerMoneyAvailable('home') < serverCost * costFactor) {
+				break; 
+			}
+
+			ns.purchaseServer(hostname, baseRam);
+		}
+	}
+	else {
+		for (const server of purchasedServers) {
+			// stay under max ram
+			const currentRam = ns.getServerMaxRam(server);
+			if (currentRam >= maxRam) {
+				continue;
+			}
+			
+			// check next server ram
+			const nextRam = currentRam * 2;
+			if (nextRam > maxRam) {
+				continue;
+			}
+
+			// check next server cost
+			const serverCost = ns.getPurchasedServerCost(nextRam);
+			if (ns.getServerMoneyAvailable('home') < serverCost * costFactor) {
+					continue;
+			}
+			
+			ns.killall(server);
+			ns.deleteServer(server);
+			ns.purchaseServer(server, nextRam);
+		}
+	}
 }

@@ -28,14 +28,16 @@ export async function main(ns) {
 	//const minHackLevel = 1;
 	const minHackLevel = 10;
 
-	const maxHackLevel = 40;
+	const maxHackLevel = 99;
 	//const maxHackLevel = ns.getHackingLevel();
 
 	/** 
-	 * Purchased Server RAM Limit, useful for early game to limit purchases
+	 * Purchased Server RAM Limits
+	 * Useful for early game to limit purchases
+	 * Useful for late game to avoid small base servers?
 	 */
-	const maxPurchasedServerRam = 16; // Maximum RAM size in GB - Max Value: 1048576
-
+	const maxPurchasedServerRam = 1024; // Maximum RAM size in GB - Max Value: 1048576
+	//const basePurchasedServerRam = 8; // Base ram size, Defaulted to 8 in function, but can be adjusted here
 
 	/****************************************************************************
 	 * FUNCTIONS
