@@ -291,12 +291,47 @@ Some augments can be obtained and work towards the first reset can be accomplish
 
 ## Upgrading
 
-Upgrading the home server RAM is next priority, so more and better scripts can be run. The first upgrade is only $1M, and likely could have been done before resetting for augmentations (whoops).
+Upgrading the home server RAM is next priority, so more and better scripts can be run. The first upgrade is only $1M, and likely could have been done before resetting for augmentations (whoops). After leaving the game running for a while, I was able to work up to 512 GB of RAM on the home server, which should be plenty to start.
 
-Once the upgrade has been completed. The next phase of the operation begins. Efficient hacking through "proto-batchers."
+Since the upgrade has been completed. The next phase of the operation begins. Efficient hacking through "proto-batchers" and purchased servers.
 
-## Proto-Batching
+## Proto-Batching (or planning to, at least)
 
 The BitBurner docs refer to a proto-batcher algorithm as a manager that separates the scripts and performs all deployments from a master script based on threads and need. Much of what has already been accomplished has worked towards this goal. The part that needs the most refinements is the calculation of necessary threads to perform any given action on a target. If available threads are also updated to the console regularly, it would be easy to monitor the effectiveness of the hacks.
 
 The goals are going to become more complex. Now I want to reduce the hack algorithm to a single target, and update the console with a status dashboard.
+
+### Following the Threads
+
+The docs include a `monitor.js` that includes several interesting outputs, and uses a couple functions that are not documented. Specifically, `hackAnalyzeThreads` and `growthAnalyze`. The `weaken` thread count is statically defined by calculating the difference between the minimum security level and current security level, then multipling the result by 20. This is all wrapped in a while loop to give a near-realtime view into the hack progression of a server.
+
+```javascript
+   const server = flags._[0];
+   let money = ns.getServerMoneyAvailable(server);
+   if (money === 0) money = 1;
+   const maxMoney = ns.getServerMaxMoney(server);
+   const minSec = ns.getServerMinSecurityLevel(server);
+   const sec = ns.getServerSecurityLevel(server);
+   ns.clearLog(server);
+   ns.print(`${server}:`);
+   ns.print(` $_______: ${ns.formatNumber(money)} / ${ns.formatNumber(maxMoney)} (${(money / maxMoney * 100).toFixed(2)}%)`);
+   ns.print(` security: +${(sec - minSec).toFixed(2)}`);
+   ns.print(` hack____: ${ns.tFormat(ns.getHackTime(server))} (t=${Math.ceil(ns.hackAnalyzeThreads(server, money))})`);
+   ns.print(` grow____: ${ns.tFormat(ns.getGrowTime(server))} (t=${Math.ceil(ns.growthAnalyze(server, maxMoney / money))})`);
+   ns.print(` weaken__: ${ns.tFormat(ns.getWeakenTime(server))} (t=${Math.ceil((sec - minSec) * 20)})`);
+   await ns.sleep(flags.refreshrate);
+```
+
+These are interesting, and will probably become useful. However, I need to break this process down into indivdual steps. In order to split up the jobs, I need to know how much total RAM I have available to split up across all servers, and the RAM cost of the hack scripts. `getRamStatistics()`. With the stats in hand, it is calculated that each script uses about 1.75 GB of RAM. I think this can be rounded to 2 GB per script to make the math easier. All servers have a ram count that is a multiple of 2. Additionally, we have 396 GB of server host ram to work with at hack level 256. This means we can run 198 scripts, or threads. Keep in mind that all these calculations are excluding `home` for now, which has grown to 1TB in size. Moving up to 2 GB per thread for the calcution leaves about 25% of ram underutilized, but I suspect that the hacks will still be far more efficient than the current extreme overhacking that is taking place.
+
+It has been shown through monitoring how effective a using weaken to keep the security level low truly is. Hack and grow are much, much more effective and efficient when the security level is as low as possible. This will be part of the balance. Furthermore, calculations in-game are only updated once a script has completed. So, if a bunch of hack scripts all finish at the same time, each subsequent one will experience a higher security level, and therefore hack less money. It is also notable that it is possible to hack only a certain percentage of money that can be calculated. As the game docs say, we want to keep the money high, and the security level low.
+
+I've stopped all hacks for now, to get some quantifible data on these calculations. First, let's weaken `joesguns` to its minimum security level. Right now, our monitor states that this will require 63 threads. Let's run the `weaken` from `n00dles`, with 2 threads. There are 4 GB available, so about 3.5 should get used. The expectation is that `joesguns` weaken thread count will decrease by 2 in 43 seconds. This is precisely what happened. Let's try putting this into a function, `executeBatchHacks()`.
+
+The first iteration of this function is mostly working as intended. It is calculating the total threads necessary per target process, and allocating servers to run against that target. The primary issue now is that when our loop executes again, we don't have prior knowledge of what has been launched already. This is causing an overhack condition because each time the loop runs, it recalculates the full thread load. This was somewhat mitagated with a stopgap solution to just check if the file is running and skip that host, but that just pushes the problem to hosts that are not running that particular hack script at that moment.
+
+However, the first iteration is working well enough as a proof of concept. All three hack functions are working, and the security level is kept to a very low level, typically less than 1.5 over the minimum. At least this makes the overhacking as efficient as possible.
+
+Another way around this problem might be to expand the target list. To do this correctly would factor in the total threads needed for a target, then moving to the next target. This would continue until we are out of threads or exhausted all targets. If the amount of targets was kept high enough, the entire thread count would be exhausted, which would over over hacking the targets, while leaving the last target underhacked.
+
+Leaving the controller running overnight hacking `joesguns` turned into `$185k` per second. Not bad.

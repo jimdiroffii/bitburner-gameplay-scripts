@@ -28,6 +28,6 @@ export async function main(ns) {
 		 * of timing to launch the main program. This can't be
 		 * edited without restarting this script.
 		 */
-		await ns.sleep(2000);
+		await ns.sleep(5000);
 	}
 }
