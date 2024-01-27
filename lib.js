@@ -190,7 +190,8 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 				for (let host of hosts) {
 				//hIndex = 0;
 				//while (tWeak >= 1) {
-					if (ns.scriptRunning('weaken.js', host)) {
+					//if (ns.scriptRunning('weaken.js', host)) {
+					if (ns.isRunning('weaken.js', host, target)) {
 						continue;
 					}
 
@@ -237,7 +238,8 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 				//hIndex = 0;
 				//while (tGrow >= 1) {
 					// If this host is already this script
-					if (ns.scriptRunning('grow.js', host)) {
+					//if (ns.scriptRunning('grow.js', host)) {
+					if (ns.isRunning('grow.js', host, target)) {
 						continue;
 					}
 					
@@ -281,7 +283,7 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 			}
 			else {
 				// Aim for a 10% hack rate
-				ns.tprint("Hacking " + target)
+				//ns.tprint("Hacking " + target)
 				//ns.tprint("tHack: " + tHack);
 
 				let tHack10 = Math.ceil((.10 * tHack));
@@ -294,7 +296,8 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 				for (let host of hosts) {
 				//hIndex = 0;
 				//while (tHack10 >= 1) {
-					if (ns.scriptRunning('hack.js', host)) {
+					//if (ns.scriptRunning('hack.js', host)) {
+					if (ns.isRunning('hack.js', host, target)) {
 						continue;
 					}
 

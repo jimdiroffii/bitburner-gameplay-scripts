@@ -28,8 +28,8 @@ export async function main(ns) {
 	//const minHackLevel = 1;
 	const minHackLevel = 10;
 
-	const maxHackLevel = 99;
-	//const maxHackLevel = ns.getHackingLevel();
+	//const maxHackLevel = 99;
+	const maxHackLevel = ns.getHackingLevel();
 
 	/** 
 	 * Purchased Server RAM Limits
