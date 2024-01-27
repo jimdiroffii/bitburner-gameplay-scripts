@@ -1,6 +1,9 @@
 # Bitburner Settings Ignore
 settings.json
 
+# MacOS DS Files
+.DS_Store
+
 # Logs
 logs
 *.log
