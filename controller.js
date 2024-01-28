@@ -23,7 +23,10 @@ export async function main(ns) {
 	let minHackLevel = 1;
 	let maxHackLevel = ns.getHackingLevel();
 	
-	if ((pHackLevel > 10 && pHackLevel <= 100) || ns.getServerMoneyAvailable('home') < 25e7) {
+	if (pHackLevel <= 10) {
+		ns.tprint("Good luck!");
+	}
+	else if (pHackLevel > 10 && (pHackLevel <= 100 || ns.getServerMoneyAvailable('home') < 25e7)) {
 		singleTarget = 'joesguns';
 	}
 	else if (pHackLevel <= 350) {
@@ -102,7 +105,7 @@ export async function main(ns) {
 	else {
 		targets = await lib.filterTargets(ns, allServers, undefined, undefined, maxHackLevel, minHackLevel);
 	}
-	//ns.tprint("targets: " + targets);
+	ns.tprint("targets: " + targets);
 
 	/**
 	 * Hacks

@@ -109,7 +109,7 @@ export async function filterTargets(ns, servers, singleTarget = false, thisTarge
 					serverHackLevel <= maxHackLevel) ||
 					(server === thisTarget)
 			) {
-					//ns.tprint("Adding to targets: " + server);
+					ns.tprint("Adding to targets: " + server);
 					targets.push(server);
 			}
 	}
