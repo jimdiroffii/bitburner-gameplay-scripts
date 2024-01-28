@@ -346,34 +346,34 @@ export async function executeBatchHacks(ns, hosts, targets, ramData) {
 export async function buyExploits(ns) {
 	const funds = ns.getServerMoneyAvailable('home');
 
-	if (funds > 500000 && !ns.fileExists('BruteSSH.exe', 'home')) {
+	if (funds > 5e5 && !ns.fileExists('BruteSSH.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase BruteSSH.exe");
 	}
-	if (funds > 1500000 && !ns.fileExists('FTPCrack.exe', 'home')) {
+	if (funds > 15e5 && !ns.fileExists('FTPCrack.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase FTPCrack.exe");
 	}
-	if (funds > 5000000 && !ns.fileExists('relaySMTP.exe', 'home')) {
+	if (funds > 5e6 && !ns.fileExists('relaySMTP.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase relaySMTP.exe");
 	}
-	if (funds > 30000000 && !ns.fileExists('HTTPWorm.exe', 'home')) {
+	if (funds > 3e7 && !ns.fileExists('HTTPWorm.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase HTTPWorm.exe");
 	}
-	if (funds > 250000000 && !ns.fileExists('SQLInject.exe', 'home')) {
+	if (funds > 25e7 && !ns.fileExists('SQLInject.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase SQLInject.exe");
 	}
-	if (funds > 500000 && !ns.fileExists('ServerProfiler.exe', 'home')) {
+	if (funds > 5e5 && !ns.fileExists('ServerProfiler.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase ServerProfiler.exe");
 	}
-	if (funds > 500000 && !ns.fileExists('DeepscanV1.exe', 'home')) {
+	if (funds > 5e5 && !ns.fileExists('DeepscanV1.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase DeepscanV1.exe");
 	}
-	if (funds > 25000000 && !ns.fileExists('DeepscanV2.exe', 'home')) {
+	if (funds > 25e6 && !ns.fileExists('DeepscanV2.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase DeepscanV2.exe");
 	}
-	if (funds > 1000000 && !ns.fileExists('AutoLink.exe', 'home')) {
+	if (funds > 1e6 && !ns.fileExists('AutoLink.exe', 'home')) {
 		ns.tprint("UPDATE: Can purchase AutoLink.exe");
 	}
-	if (funds > 5000000000 && !ns.fileExists('Formulas.exe', 'home')) {
+	if (funds > 5e9 && !ns.fileExists('Formulas.exe', 'home')) {
 		//ns.tprint("UPDATE: Can purchase Formulas.exe");
 	}
 }

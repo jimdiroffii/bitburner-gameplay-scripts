@@ -13,30 +13,35 @@ export async function main(ns) {
 	 ***************************************************************************/
 
 	/**
-	 * Set isSingleTarget to true or false based on need
-	 * If false, the min and max values are used
+	 * Hack n00dles until at least hack level 10
+	 * Then switch to joesguns until lvl 100, or when less than $250M in home
+	 * Then switch to ranged targeting
 	 */
-	const isSingleTarget = false;
-	//const isSingleTarget = true;
-
-	//const singleTarget = 'n00dles';
-	const singleTarget = 'joesguns';
-
-	/**
-	 * Set min and max hack level for range-based (non-single target) targeting
-	 */
-	//const minHackLevel = 1;
-	const minHackLevel = 10;
-
-	//const maxHackLevel = 99;
-	const maxHackLevel = ns.getHackingLevel();
+	const pHackLevel = ns.getHackingLevel();
+	let isSingleTarget = true;
+	let singleTarget = 'n00dles';
+	let minHackLevel = 1;
+	let maxHackLevel = ns.getHackingLevel();
+	
+	if ((pHackLevel > 10 && pHackLevel <= 100) || ns.getServerMoneyAvailable('home') < 25e7) {
+		singleTarget = 'joesguns';
+	}
+	else if (pHackLevel <= 350) {
+		isSingleTarget = false;
+		minHackLevel = 10;
+		maxHackLevel = 199;
+	}
+	else {
+		isSingleTarget = false;
+		minHackLevel = 10;
+	}
 
 	/** 
 	 * Purchased Server RAM Limits
 	 * Useful for early game to limit purchases
 	 * Useful for late game to avoid small base servers?
 	 */
-	const maxPurchasedServerRam = 1024; // Maximum RAM size in GB - Max Value: 1048576
+	const maxPurchasedServerRam = 256; // Maximum RAM size in GB - Max Value: 1048576
 	//const basePurchasedServerRam = 8; // Base ram size, Defaulted to 8 in function, but can be adjusted here
 
 	/****************************************************************************
