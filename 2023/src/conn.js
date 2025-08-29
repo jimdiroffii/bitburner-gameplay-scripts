@@ -8,10 +8,12 @@
 export async function main(ns) {
 	if (!ns.fileExists("servers.txt")) {
 		ns.tprint("servers.txt not found. Run scanToFile.js first.");
+		return;
 	}
 
 	if (!ns.fileExists("excludedServers.txt")) {
 		ns.tprint("excludedServers.txt not found.");
+		return;
 	}
 
 	const serverData = ns.read("servers.txt");
