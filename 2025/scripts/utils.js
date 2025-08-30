@@ -1,0 +1,66 @@
+/**
+ * Returns an array of all server hostnames in the game.
+ * @param {NS} ns
+ * @returns {string[]} An array of all server hostnames.
+ */
+export function getServers(ns) {
+  const allServers = new Set(['home']);
+  const serversToScan = ['home'];
+
+  while (serversToScan.length > 0) {
+    const currentServer = serversToScan.shift();
+    const connectedServers = ns.scan(currentServer);
+
+    for (const server of connectedServers) {
+      if (!allServers.has(server)) {
+        allServers.add(server);
+        serversToScan.push(server);
+      }
+    }
+  }
+  return [...allServers];
+}
+
+export function getPuppets(ns) {
+  const allServerData = JSON.parse(ns.read('server-data.txt'));
+
+  const myHackLevel = ns.getHackingLevel();
+  const puppets = new Set();
+  const programs = [
+    { file: "BruteSSH.exe", open: ns.brutessh },
+    { file: "FTPCrack.exe", open: ns.ftpcrack },
+    { file: "RelaySMTP.exe", open: ns.relaysmtp },
+    { file: "HTTPWorm.exe", open: ns.httpworm },
+    { file: "SQLInject.exe", open: ns.sqlinject }
+  ];
+
+  const availablePrograms = programs.filter(p => ns.fileExists(p.file, "home"));
+
+  for (const server of allServerData) {
+    if (!ns.hasRootAccess(server.hostname) && server.reqHackLevel <= myHackLevel) {
+      if (server.portsRequired <= availablePrograms.length) {
+        ns.print(`INFO: Attempting to root ${server.hostname}`);
+        availablePrograms.forEach(program => program.open(server.hostname));
+        ns.nuke(server.hostname);
+      }
+    }
+
+    if (ns.hasRootAccess(server.hostname)) {
+      puppets.add(server.hostname);
+    }
+  }
+
+  return [...puppets];
+}
+
+export function getTargets(ns) {
+  const myHackLevel = ns.getHackingLevel();
+  const allPuppetData = JSON.parse(ns.read('puppet-data.txt'));
+  const targets = allPuppetData
+    .filter(puppet =>
+      ns.hasRootAccess(puppet)
+    );
+
+
+  return [...targets];
+}
