@@ -21,10 +21,9 @@ export function getServers(ns) {
   return [...allServers];
 }
 
-export function getPuppets(ns) {
+export async function getPuppets(ns) {
   const allServerData = JSON.parse(ns.read('server-data.txt'));
-
-  const myHackLevel = ns.getHackingLevel();
+  ns.print(`DEBUG: Loaded ${allServerData.length} servers from server-data.txt`);
   const puppets = new Set();
   const programs = [
     { file: "BruteSSH.exe", open: ns.brutessh },
@@ -35,32 +34,40 @@ export function getPuppets(ns) {
   ];
 
   const availablePrograms = programs.filter(p => ns.fileExists(p.file, "home"));
+  ns.print("DEBUG: Available hacking programs: " + availablePrograms.map(p => p.file).join(", "));
 
   for (const server of allServerData) {
-    if (!ns.hasRootAccess(server.hostname) && server.reqHackLevel <= myHackLevel) {
-      if (server.portsRequired <= availablePrograms.length) {
-        ns.print(`INFO: Attempting to root ${server.hostname}`);
-        availablePrograms.forEach(program => program.open(server.hostname));
-        ns.nuke(server.hostname);
-      }
+    // ns.print(`DEBUG: Checking ${server.hostname}`);
+    if (!server.hasAdmin && server.portsRequired <= availablePrograms.length) {
+      ns.print(`INFO: Attempting to root ${server.hostname}`);
+      availablePrograms.forEach(program => program.open(server.hostname));
+      ns.nuke(server.hostname);
+      server.hasAdmin = true;
+      ns.print(`SUCCESS: Rooted ${server.hostname}`);
     }
 
-    if (ns.hasRootAccess(server.hostname)) {
+    if (
+      server.hasAdmin &&
+      server.hostname !== "home" &&
+      server.hostname !== "darkweb"
+    ) {
       puppets.add(server.hostname);
     }
   }
 
+  // Update server-data.txt with rooted servers
+  await ns.write('server-data.txt', JSON.stringify(allServerData, null, 2), 'w');
   return [...puppets];
 }
 
 export function getTargets(ns) {
-  const myHackLevel = ns.getHackingLevel();
   const allPuppetData = JSON.parse(ns.read('puppet-data.txt'));
-  const targets = allPuppetData
-    .filter(puppet =>
-      ns.hasRootAccess(puppet)
-    );
-
+  const targets = new Set();
+  for (const puppet of allPuppetData) {
+    if (ns.getServerRequiredHackingLevel(puppet.hostname) <= ns.getHackingLevel()) {
+      targets.add(puppet.hostname);
+    }
+  }
 
   return [...targets];
 }
