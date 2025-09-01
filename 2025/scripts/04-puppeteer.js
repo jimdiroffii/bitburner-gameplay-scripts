@@ -101,7 +101,7 @@ export async function main(ns) {
         bestTarget = targetData;
       }
 
-      ns.tprint(`INFO: Target ${targetData.hostname} - Score: ${score.toFixed(2)}, Cycle Efficiency: ${cycleEfficiency.toFixed(2)}, Growth Bonus: ${growthBonus.toFixed(4)}, Scale Factor: ${scaleFactor.toFixed(2)}`);
+      //ns.tprint(`INFO: Target ${targetData.hostname} - Score: ${score.toFixed(2)}, Cycle Efficiency: ${cycleEfficiency.toFixed(2)}, Growth Bonus: ${growthBonus.toFixed(4)}, Scale Factor: ${scaleFactor.toFixed(2)}`);
     }
 
     return bestTarget || allTargetData.find(t => t.hostname === "n00dles"); // Fallback to n00dles
@@ -196,12 +196,12 @@ export async function main(ns) {
   while (true) {
     cycleCount++;
 
-    if (!use_home) {
-      if (ns.getServerMaxRam('home') > 8) {
-        use_home = true;
-        ns.tprint("UPDATE: Home server has sufficient RAM. Including in puppet pool.");
-      }
-    }
+    // if (!use_home) {
+    //   if (ns.getServerMaxRam('home') > 8) {
+    //     use_home = true;
+    //     ns.tprint("UPDATE: Home server has sufficient RAM. Including in puppet pool.");
+    //   }
+    // }
 
     // Spawn server generator every 10th cycle
     if (cycleCount > 0 && cycleCount % 10 === 0) {
