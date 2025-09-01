@@ -1,6 +1,6 @@
 /** @param {NS} ns */
 
-import { getPuppets } from "./utils";
+import { getPuppets } from "utils.js";
 
 export async function main(ns) {
   ns.tprint("INFO: Generating puppets...");
@@ -11,11 +11,11 @@ export async function main(ns) {
     await ns.scp(workerScripts, puppet, "home");
   }
 
-  // Puppets are rooted servers, excluding home and darkweb
+  // Puppets are rooted servers
   const puppetData = puppetNames.map(puppet => {
     return {
       hostname: puppet,
-      totalRam: ns.getServerMaxRam(puppet)
+      ram: ns.getServerMaxRam(puppet)
     };
   });
 
