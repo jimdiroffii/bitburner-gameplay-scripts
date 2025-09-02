@@ -1,0 +1,30 @@
+[
+  {
+    "hostname": "n00dles",
+    "maxRam": 4
+  },
+  {
+    "hostname": "foodnstuff",
+    "maxRam": 16
+  },
+  {
+    "hostname": "sigma-cosmetics",
+    "maxRam": 16
+  },
+  {
+    "hostname": "joesguns",
+    "maxRam": 16
+  },
+  {
+    "hostname": "hong-fang-tea",
+    "maxRam": 16
+  },
+  {
+    "hostname": "harakiri-sushi",
+    "maxRam": 16
+  },
+  {
+    "hostname": "nectar-net",
+    "maxRam": 16
+  }
+]

@@ -1,0 +1,562 @@
+[
+  {
+    "hostname": "home",
+    "hasAdminRights": true,
+    "maxRam": 8,
+    "maxMoney": 0,
+    "requiredHackingLevel": 1,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "n00dles",
+    "hasAdminRights": false,
+    "maxRam": 4,
+    "maxMoney": 1750000,
+    "requiredHackingLevel": 1,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "foodnstuff",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 50000000,
+    "requiredHackingLevel": 1,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "sigma-cosmetics",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 57500000,
+    "requiredHackingLevel": 5,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "joesguns",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 62500000,
+    "requiredHackingLevel": 10,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "hong-fang-tea",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 75000000,
+    "requiredHackingLevel": 30,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "harakiri-sushi",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 100000000,
+    "requiredHackingLevel": 40,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "iron-gym",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 500000000,
+    "requiredHackingLevel": 100,
+    "numOpenPortsRequired": 1
+  },
+  {
+    "hostname": "zer0",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 187500000,
+    "requiredHackingLevel": 75,
+    "numOpenPortsRequired": 1
+  },
+  {
+    "hostname": "nectar-net",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 68750000,
+    "requiredHackingLevel": 20,
+    "numOpenPortsRequired": 0
+  },
+  {
+    "hostname": "max-hardware",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 250000000,
+    "requiredHackingLevel": 80,
+    "numOpenPortsRequired": 1
+  },
+  {
+    "hostname": "CSEC",
+    "hasAdminRights": false,
+    "maxRam": 8,
+    "maxMoney": 0,
+    "requiredHackingLevel": 59,
+    "numOpenPortsRequired": 1
+  },
+  {
+    "hostname": "neo-net",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 125000000,
+    "requiredHackingLevel": 50,
+    "numOpenPortsRequired": 1
+  },
+  {
+    "hostname": "phantasy",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 600000000,
+    "requiredHackingLevel": 100,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "omega-net",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 1689485775,
+    "requiredHackingLevel": 213,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "silver-helix",
+    "hasAdminRights": false,
+    "maxRam": 64,
+    "maxMoney": 1125000000,
+    "requiredHackingLevel": 150,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "the-hub",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 4178688200,
+    "requiredHackingLevel": 308,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "netlink",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 6875000000,
+    "requiredHackingLevel": 378,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "crush-fitness",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 1296322475,
+    "requiredHackingLevel": 236,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "avmnite-02h",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 0,
+    "requiredHackingLevel": 219,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "computek",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 5681671050,
+    "requiredHackingLevel": 363,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "johnson-ortho",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 1767475525,
+    "requiredHackingLevel": 273,
+    "numOpenPortsRequired": 2
+  },
+  {
+    "hostname": "summit-uni",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 6572455575,
+    "requiredHackingLevel": 460,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "syscore",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 11136662900,
+    "requiredHackingLevel": 612,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "I.I.I.I",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 0,
+    "requiredHackingLevel": 365,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "rothman-uni",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 6078524175,
+    "requiredHackingLevel": 394,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "catalyst",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 13487632650,
+    "requiredHackingLevel": 400,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "zb-institute",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 26753459750,
+    "requiredHackingLevel": 726,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "rho-construction",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 14440161200,
+    "requiredHackingLevel": 499,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "aevum-police",
+    "hasAdminRights": false,
+    "maxRam": 64,
+    "maxMoney": 7187710175,
+    "requiredHackingLevel": 405,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "lexo-corp",
+    "hasAdminRights": false,
+    "maxRam": 128,
+    "maxMoney": 18822055375,
+    "requiredHackingLevel": 713,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "alpha-ent",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 16043730300,
+    "requiredHackingLevel": 561,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "millenium-fitness",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 6250000000,
+    "requiredHackingLevel": 485,
+    "numOpenPortsRequired": 3
+  },
+  {
+    "hostname": "galactic-cyber",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 19161423125,
+    "requiredHackingLevel": 863,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "aerocorp",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 29847415075,
+    "requiredHackingLevel": 866,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "global-pharm",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 39175439850,
+    "requiredHackingLevel": 787,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "snap-fitness",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 11250000000,
+    "requiredHackingLevel": 761,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "omnia",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 24865065675,
+    "requiredHackingLevel": 940,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "deltaone",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 40521201425,
+    "requiredHackingLevel": 870,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "unitalife",
+    "hasAdminRights": false,
+    "maxRam": 64,
+    "maxMoney": 26874442950,
+    "requiredHackingLevel": 785,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "defcomm",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 22722491400,
+    "requiredHackingLevel": 1034,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "icarus",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 24778437650,
+    "requiredHackingLevel": 902,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "univ-energy",
+    "hasAdminRights": false,
+    "maxRam": 64,
+    "maxMoney": 27838017875,
+    "requiredHackingLevel": 821,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "solaris",
+    "hasAdminRights": false,
+    "maxRam": 128,
+    "maxMoney": 21182893150,
+    "requiredHackingLevel": 847,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "zeus-med",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 33541191900,
+    "requiredHackingLevel": 842,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "taiyang-digital",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 21493357175,
+    "requiredHackingLevel": 905,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "zb-def",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 25772295050,
+    "requiredHackingLevel": 816,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "nova-med",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 29915439575,
+    "requiredHackingLevel": 783,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "infocomm",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 15917252000,
+    "requiredHackingLevel": 908,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "microdyne",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 13525136500,
+    "requiredHackingLevel": 846,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "applied-energetics",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 23362269475,
+    "requiredHackingLevel": 833,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "run4theh111z",
+    "hasAdminRights": false,
+    "maxRam": 256,
+    "maxMoney": 0,
+    "requiredHackingLevel": 535,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "titan-labs",
+    "hasAdminRights": false,
+    "maxRam": 128,
+    "maxMoney": 21677640825,
+    "requiredHackingLevel": 836,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "stormtech",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 25757742600,
+    "requiredHackingLevel": 897,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "fulcrumtech",
+    "hasAdminRights": false,
+    "maxRam": 512,
+    "maxMoney": 40313491050,
+    "requiredHackingLevel": 963,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "helios",
+    "hasAdminRights": false,
+    "maxRam": 32,
+    "maxMoney": 17981799650,
+    "requiredHackingLevel": 802,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "vitalife",
+    "hasAdminRights": false,
+    "maxRam": 64,
+    "maxMoney": 19220867750,
+    "requiredHackingLevel": 790,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": ".",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 0,
+    "requiredHackingLevel": 532,
+    "numOpenPortsRequired": 4
+  },
+  {
+    "hostname": "omnitek",
+    "hasAdminRights": false,
+    "maxRam": 512,
+    "maxMoney": 388974311275,
+    "requiredHackingLevel": 1094,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "kuai-gong",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 620491674425,
+    "requiredHackingLevel": 1210,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "4sigma",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 437919094600,
+    "requiredHackingLevel": 995,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "b-and-a",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 552971804600,
+    "requiredHackingLevel": 1002,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "blade",
+    "hasAdminRights": false,
+    "maxRam": 128,
+    "maxMoney": 380628236775,
+    "requiredHackingLevel": 968,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "nwo",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 776539146550,
+    "requiredHackingLevel": 1249,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "powerhouse-fitness",
+    "hasAdminRights": false,
+    "maxRam": 16,
+    "maxMoney": 22500000000,
+    "requiredHackingLevel": 1094,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "clarkinc",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 585115770225,
+    "requiredHackingLevel": 1234,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "The-Cave",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 0,
+    "requiredHackingLevel": 925,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "ecorp",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 1180153267450,
+    "requiredHackingLevel": 1353,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "megacorp",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 1338509021200,
+    "requiredHackingLevel": 1161,
+    "numOpenPortsRequired": 5
+  },
+  {
+    "hostname": "fulcrumassets",
+    "hasAdminRights": false,
+    "maxRam": 0,
+    "maxMoney": 25000000,
+    "requiredHackingLevel": 1466,
+    "numOpenPortsRequired": 5
+  }
+]

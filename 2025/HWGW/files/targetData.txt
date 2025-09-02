@@ -1,0 +1,11 @@
+{
+  "hostname": "n00dles",
+  "hasAdminRights": true,
+  "requiredHackingLevel": 1,
+  "numOpenPortsRequired": 0,
+  "maxRam": 4,
+  "maxMoney": 1750000,
+  "serverGrowth": 3000,
+  "minDifficulty": 1,
+  "baseDifficulty": 1
+}
