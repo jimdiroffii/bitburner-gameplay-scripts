@@ -70,7 +70,7 @@ export async function main(ns) {
     // Condition 3: Server is prepped.
     ns.tprint(`SUCCESS: Target server ${targetData.hostname} is fully prepared.`);
     ns.tprint("INFO: Spawning HWGW batch manager...");
-    ns.spawn('06-puppetMaster.js');
+    ns.spawn('11-advPuppetMaster.js');
     return;
   }
 }

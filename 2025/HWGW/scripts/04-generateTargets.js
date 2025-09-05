@@ -44,5 +44,12 @@ export async function main(ns) {
   ns.tprint(`SUCCESS: Best target selected: ${bestTarget.hostname} (Score: ${ns.formatNumber(maxScore, 0)})`);
   ns.tprint("INFO: Complete target data saved to targetData.txt.");
   ns.tprint("INFO: Spawning server preparation manager...");
-  ns.spawn('05-prepTargets.js');
+
+  // If we have very little RAM, use the simpler hack sequence
+  if (ns.getServerMaxRam('home') < 32) {
+    ns.spawn('05-prepTargets.js');
+  }
+  else {
+    ns.spawn('10-advPrepTargets.js');
+  }
 }
