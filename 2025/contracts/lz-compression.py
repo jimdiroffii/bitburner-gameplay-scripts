@@ -129,25 +129,61 @@ def verify_compression(original, compressed):
     
     return decoded == original
 
+def lzDecompression(compressed: str) -> str:
+    """
+    Decompresses a string that was encoded using the lzCompression logic.
+    """
+    decoded = ""
+    i = 0
+    chunk_type = 0  # 0 = literal, 1 = reference, starts with literal
+    
+    while i < len(compressed):
+        try:
+            length = int(compressed[i])
+        except (ValueError, IndexError):
+            # Handle malformed compressed string
+            print(f"Error: Invalid character in compressed string at index {i}")
+            return decoded
+
+        i += 1
+        
+        if length == 0:
+            # A length of 0 means we switch chunk type and continue
+            chunk_type = 1 - chunk_type
+            continue
+        
+        if chunk_type == 0:  # Literal chunk
+            # Copy 'length' characters directly from the compressed string
+            chunk_data = compressed[i : i + length]
+            decoded += chunk_data
+            i += length
+        else:  # Reference chunk
+            try:
+                distance = int(compressed[i])
+                i += 1
+            except (ValueError, IndexError):
+                print(f"Error: Missing distance value in reference chunk at index {i-1}")
+                return decoded
+
+            # Copy 'length' characters by looking back 'distance' in the decoded string
+            for _ in range(length):
+                if len(decoded) < distance:
+                    print(f"Error: Invalid back-reference. Distance {distance} is too large.")
+                    return decoded
+                decoded += decoded[len(decoded) - distance]
+        
+        # Alternate chunk type for the next block
+        chunk_type = 1 - chunk_type
+    
+    return decoded
+
 if __name__ == "__main__":
-    inputString = "XU6HJKF188jDMBDqCXFDHcy1Zxk1Z846S568L568L568L568LWsiWsiWsi4WsuBsUdGGJLdHWr"
-    result = lzCompression(inputString)
-    print(f"Original length: {len(inputString)}")
-    print(f"Compressed: {result}")
-    print(f"Compressed length: {len(result)}")
-    print(f"Compression ratio: {len(result)/len(inputString):.2%}")
-    print(f"Verification: {verify_compression(inputString, result)}")
+    # inputString = "XU6HJKF188jDMBDqCXFDHcy1Zxk1Z846S568L568L568L568LWsiWsiWsi4WsuBsUdGGJLdHWr"
+    # result = lzCompression(inputString)
+    # print(f"Compressed: {result}")
+
+    inputString = "2hh920978cJfhhcPx393G8D77660xhcA5647oyb"
+    result = lzDecompression(inputString)
+    print(f"Decompressed: {result}")
+
     
-    # Test with examples
-    examples = [
-        ("abracadabra", "7abracad47"),
-        ("mississippi", "4miss433ppi"),
-        ("aAAaAAaAaAA", "3aAA53035"),
-        ("2718281828", "627182844"),
-        ("aaaaaaaaaaaa", "3aaa91"),
-    ]
-    
-    print("\nTesting examples:")
-    for original, expected in examples:
-        compressed = lzCompression(original)
-        print(f"{original} -> {compressed} (expected: {expected}) Valid: {verify_compression(original, compressed)}")
