@@ -1,4 +1,5 @@
-const string = "20922109214";
+//const string = "20922109214";
+const string = "642412372";
 
 // Generate a function that create an array of all valid IP addresses from a string
 function generateIPAddresses(s) {
