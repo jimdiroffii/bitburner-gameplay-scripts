@@ -1,6 +1,9 @@
 /**
  * A more robust deployment script that finds available RAM on the puppet network
  * and executes a script with the specified number of threads.
+ * 
+ * Has been shown to reach $77.5B per second on a single target.
+ * 
  * @param {NS} ns
  * @param {string} script - The name of the script to deploy.
  * @param {number} threads - The total number of threads to launch.
@@ -152,7 +155,15 @@ export async function main(ns) {
     const currentHackingLevel = ns.getHackingLevel();
     let milestone = 0;
 
-    if (currentHackingLevel >= 1000) {
+    if (currentHackingLevel >= 3000) {
+      ns.tprint(`INFO: Hacking level is now ${currentHackingLevel}. Maximum milestone reached.`);
+      ns.tprint("INFO: Increase RAM on home to continue progression.");
+      continue; // No further restarts needed
+    }
+    else if (currentHackingLevel >= 2000) {
+      milestone = 500;
+    }
+    else if (currentHackingLevel >= 1000) {
       milestone = 300;
     }
     else if (currentHackingLevel >= 300) {

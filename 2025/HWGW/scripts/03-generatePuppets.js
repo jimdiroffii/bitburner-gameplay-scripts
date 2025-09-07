@@ -55,6 +55,13 @@ export async function main(ns) {
   ns.tprint(`SUCCESS: Provisioned ${workerPuppets.length} total worker puppets (${newPuppets} new).`);
   ns.tprint(`INFO: Total RAM across worker puppets: ${totalRAM} GB.`);
   ns.tprint("INFO: Updated serverData.txt and created puppetData.txt.");
-  ns.tprint("INFO: Spawning target data generator...");
-  ns.spawn('04-generateTargets.js');
+
+  if (ns.getServerMaxRam("home") < 1024 || ns.getHackingLevel() < 1500) {
+    ns.tprint("INFO: Spawning target data generator...");
+    ns.spawn('04-generateTargets.js');
+  }
+  else {
+    ns.tprint("INFO: Spawning multi-target puppet master...");
+    ns.spawn('20-masterOfTargets.js');
+  }
 }
