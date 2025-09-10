@@ -84,6 +84,8 @@ export async function main(ns) {
     { name: "relaySMTP.exe", cost: 5000000 },
     { name: "HTTPWorm.exe", cost: 30000000 },
     { name: "SQLInject.exe", cost: 250000000 },
+    { name: "DeepscanV2.exe", cost: 25000000 },
+    { name: "AutoLink.exe", cost: 1000000 },
   ];
 
   // Only try to buy programs if we have TOR
