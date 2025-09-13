@@ -23,3 +23,5 @@ As before, we want to automate the hacking from the very beginning. It is nice t
 Run a startup script that finds all available servers. Then we need to mark targets for hacking that is continually updated as our hack level grows.
 
 The `exec` and `run` functions have a high RAM cost, so if we are going to run multiple scripts, we need to chain them together to run sequentially, instead of all in one script.
+
+## Update
