@@ -179,12 +179,12 @@ def lzDecompression(compressed: str) -> str:
 
 if __name__ == "__main__":
     # inputString = "XU6HJKF188jDMBDqCXFDHcy1Zxk1Z846S568L568L568L568LWsiWsiWsi4WsuBsUdGGJLdHWr"
-    inputString = "atwbrfmnbrfmnuaDmnuaDmnuDmnuaDmADmnuaDmAD6gfAD6gfA5iitA5OxT5Fw6A5OxT5Fw6"
-    result = lzCompression(inputString)
-    print(f"Compressed: {result}")
+    # inputString = "atwbrfmnbrfmnuaDmnuaDmnuDmnuaDmADmnuaDmAD6gfAD6gfA5iitA5OxT5Fw6A5OxT5Fw6"
+    # result = lzCompression(inputString)
+    # print(f"Compressed: {result}")
 
-    # inputString = "2hh920978cJfhhcPx393G8D77660xhcA5647oyb"
-    # result = lzDecompression(inputString)
-    # print(f"Decompressed: {result}")
+    inputString = "9EiuQyvQD5491d6686c6P6nJk853Dt8934iPCH561635"
+    result = lzDecompression(inputString)
+    print(f"Decompressed: {result}")
 
     
