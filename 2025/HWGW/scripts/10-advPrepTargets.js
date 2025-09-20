@@ -32,7 +32,7 @@ export async function main(ns) {
   const growRam = ns.getScriptRam('grow.js');
 
   ns.tprint(`INFO: Starting preparation of target: ${targetData.hostname}`);
-  ns.exec('monitor.js', targetData.hostname);
+  ns.exec('monitor.js', 'home', 1, targetData.hostname);
 
   while (true) {
     const currentSecurity = ns.getServerSecurityLevel(targetData.hostname);

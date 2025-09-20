@@ -20,5 +20,5 @@ def vigenere_cipher(arr):
     return ciphertext
 
 if __name__ == "__main__":
-    arr = ["LOGINARRAYFRAMEDEBUGLOGIC", "NETWORK"]
+    arr = ["DEBUGPASTEFRAMEQUEUESHIFT", "PROCESSOR"]
     print(vigenere_cipher(arr))

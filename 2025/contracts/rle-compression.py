@@ -25,5 +25,5 @@ def rle_compress(s):
     return ''.join(compressed)
 
 if __name__ == "__main__":
-    s = "AAquIIIIIIEEPPrrree0Vhhhhhhhh5555555555555555tttttttttt2JMMoovvVZZtt8888Qllll"
+    s = "c5f55NNNNNNNNNNNNNXXDDRiiiiiiiiiiiiii0E3uuuuzzzzzzzzzzzzzznyyyyyy6666666GGcBBBBBBB888"
     print(rle_compress(s))
