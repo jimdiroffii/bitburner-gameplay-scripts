@@ -32,5 +32,5 @@ def max_profit(prices):
     return max_total_profit
 
 if __name__ == "__main__":
-    prices = [37,178,167,76,116,148,176]
+    prices = [104,60,97,37,49,187,91,180,90,68,75,32,90,114,163,91,142,152,157,1,117,3,160,116,94,197,90,59,93,137,69,168,26]
     print(max_profit(prices))

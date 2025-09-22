@@ -36,7 +36,7 @@ def max_profit(k, prices):
     return dp[k][n - 1]
 
 if __name__ == "__main__":
-    arr = [6, [169,144,150,160,73,30,52,108,25,14,77,117,100,81,146,72]]
+    arr = [7, [142,59,140,4,91]]
     k = arr[0]
     prices = arr[1]
     print(max_profit(k, prices))
