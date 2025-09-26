@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "bitburner-filesync": "^1.2.0-beta4"
+  }
+}
